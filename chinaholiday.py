@@ -14,6 +14,14 @@ name: china public holidyas
 url: http://www.gov.cn/zhengce/index.htm
 note: 为方便检查节假日命名和书写严格按照官网,!表示周末调为上班 
 
+[2020]
+元旦: 1月1日
+春节: 1月24日-30日, !1月19日, !2月1日
+清明节: 4月4日-6日
+劳动节: 5月1日-5日, !4月26日, !5月9日
+端午节: 6月25日-27日, !6月28日
+国庆节、中秋节: 10月1日-8日, !9月27日, !10月10日
+
 [2019]
 元旦: 1月1日
 春节: 2月4日-10日, !2月2日, !2月3日
@@ -136,13 +144,13 @@ note: 为方便检查节假日命名和书写严格按照官网,!表示周末调
 
 class ChinaHoliday:
     '''
-    # 判断某天是否是公共节假日/休息日/工作日 (支持2007年-2019年)
+    # 判断某天是否是公共节假日/休息日/工作日 (支持2007年-2020年)
     # e.g.
     day = "20180101" # or datatime.day(2018, 1, 1), or 'today'/'tomorrow'/'yesterday'
     ch = ChinaHoliday()
     # methods
     ch.get_info(day) #获取完整信息
-    ch.is_public_holiday(day) # True公共节假日, False周末调为上班, None非公共节假日
+    ch.is_public_holiday(day) # True公共节假日, 否则为上班日: False周末调为上班日, None普通上班日
     ch.is_holiday(day) # True放假, False不放假
     ch.is_workday(day) # is_holiday(day)反过来
     # properties

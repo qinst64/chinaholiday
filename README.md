@@ -1,5 +1,5 @@
 # chinaholiday
-单文件版中国节假日, 支持2007-2019, python3
+单文件版中国节假日, 支持2007-2020, python3
 
 ## 快速上手
 ```python
@@ -28,24 +28,38 @@ ch.get_info(datetime.date(2019, 4, 28))
 # 'holiday_name': '工作日(劳动节调休)'
 # }
 
-ch.is_public_holiday("today")
-# 返回: True公共节假日, False周末调为上班, None非公共节假日
+#示例: 根据今天是否放假执行操作(e.g. 开启闹钟)
+if ch.is_holiday("today"):
+    # True放假
+    pass #do something
+else:
+    #False 不放假
+    pass #do something
 
-ch.is_holiday("tomorrow")
-# 返回: True放假, False不放假
+#示例: 判断明天类型
+res = ch.is_public_holiday("tomorrow")
+if res: # 此时 res = True
+    print("明天是公共节假日")
+else: # 此时 not res = True
+    print("明天不是公共节假日")
+    # 你还可以进一步用False或None区分何种上班日
+    if res is False:
+        print("明天是周末调为上班日")
+    elif res is None:
+        print("明天是普通上班日")
 ```
 
 
 ## 详细使用
 使用`print(ChinaHoliday.__doc__)`查看详细文档
 ```python
-# 判断某天是否是公共节假日/休息日/工作日 (支持2007年-2019年)
+# 判断某天是否是公共节假日/休息日/工作日 (支持2007年-2020年)
 # e.g.
 day = "20180101" # or datatime.day(2018, 1, 1), or 'today'/'tomorrow'/'yesterday'
 ch = ChinaHoliday()
 # methods
 ch.get_info(day) #获取完整信息
-ch.is_public_holiday(day) # True公共节假日, False周末调为上班, None非公共节假日
+ch.is_public_holiday(day) # True公共节假日, 否则为上班日: False周末调为上班日, None普通上班日
 ch.is_holiday(day) # True放假, False不放假
 ch.is_workday(day) # is_holiday(day)反过来
 # properties
